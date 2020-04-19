@@ -49,7 +49,7 @@ class ContentListActivity : AppCompatActivity() {
         when (viewState) {
             Loading -> onLoading()
             is Error -> onError(viewState.message)
-            is Content -> onContent(viewState.constntListContentListItems)
+            is Content -> onContent(viewState.listContentListItems)
         }
 
     private fun onContent(items: List<ContentListItem>) {

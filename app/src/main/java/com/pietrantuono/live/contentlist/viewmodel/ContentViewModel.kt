@@ -17,8 +17,10 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-class ContentViewModel(private val model: ContentListModel) : ViewModel(), IntentConsumer<ContentListIntent>, ViewStatesProducer<ContentListViewState>,
+class ContentViewModel(private val model: ContentListModel, coroutineContext: CoroutineContext) : ViewModel(), IntentConsumer<ContentListIntent>,
+    ViewStatesProducer<ContentListViewState>,
     TransientEventProducer<ContentListTransientEvent> {
 
     private val internalViewStates: MutableLiveData<ContentListViewState> = MutableLiveData(Loading)
@@ -30,9 +32,8 @@ class ContentViewModel(private val model: ContentListModel) : ViewModel(), Inten
     override val transientEvents: LiveData<ContentListTransientEvent> = internalTransientEvents
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(coroutineContext) {
             model.contentList
-                .onStart { emitViewState(Loading) }
                 .catch { emitViewState(Error(it.localizedMessage)) }
                 .map { (it.contentListItems ?: emptyList()).sortedBy { it.title } }
                 .collect { emitViewState(Content(it)) }
@@ -50,7 +51,7 @@ class ContentViewModel(private val model: ContentListModel) : ViewModel(), Inten
     }
 
     private fun getItemById(intent: ContentListIntent.OpenDetail) =
-        requireNotNull((internalViewStates.value as Content).constntListContentListItems.find { it.id == intent.id })
+        requireNotNull((internalViewStates.value as Content).listContentListItems.find { it.id == intent.id })
 
     private fun emitViewState(state: ContentListViewState) = internalViewStates.postValue(state)
 
