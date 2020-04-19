@@ -11,38 +11,38 @@ import com.pietrantuono.live.R
 import com.pietrantuono.live.application.LiveApp
 import com.pietrantuono.live.contentlist.pokos.ContentListItem
 import com.pietrantuono.live.contentlist.viewmodel.ContentListIntent.OpenDetail
-import com.pietrantuono.live.contentlist.viewmodel.ContentListViewModel
+import com.pietrantuono.live.contentlist.viewmodel.ContentViewModel
 import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState
 import com.pietrantuono.live.databinding.ActivityMainBinding
 import javax.inject.Inject
 import  com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Loading
 import  com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Error
 import  com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Content
-import com.pietrantuono.live.contentlist.viewmodel.TransientEvent
+import com.pietrantuono.live.contentlist.viewmodel.ContentListTransientEvent
 import com.pietrantuono.live.detail.DetailFragment
 
 class ContentListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     @Inject
-    lateinit var contentListViewModel: ContentListViewModel
+    lateinit var contentViewModel: ContentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         performDependencyInjection()
-        contentListViewModel.viewStates.observe(this, Observer {
+        contentViewModel.viewStates.observe(this, Observer {
             render(it)
         })
         binding.list.callback = {
-            contentListViewModel.acceptIntent(OpenDetail(it))
+            contentViewModel.acceptIntent(OpenDetail(it))
         }
-        contentListViewModel.transientEvents.observe(this, Observer { onTransientEventReceived(it) })
+        contentViewModel.transientEvents.observe(this, Observer { onTransientEventReceived(it) })
     }
 
-    private fun onTransientEventReceived(transientEvent: TransientEvent) =
+    private fun onTransientEventReceived(transientEvent: ContentListTransientEvent) =
         when (transientEvent) {
-            is TransientEvent.OpenDatail -> DetailFragment.newInstance(transientEvent.detailItem).show(supportFragmentManager, DetailFragment.TAG)
+            is ContentListTransientEvent.OpenDetail -> DetailFragment.newInstance(transientEvent.detailItem).show(supportFragmentManager, DetailFragment.TAG)
         }
 
     private fun render(viewState: ContentListViewState) =

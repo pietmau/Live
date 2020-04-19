@@ -1,13 +1,10 @@
 package com.pietrantuono.live.contentlist.di
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.pietrantuono.live.contentlist.model.ContentListModel
 import com.pietrantuono.live.contentlist.model.RetrofitContentListModel
-import com.pietrantuono.live.contentlist.network.ContentListClient
-import com.pietrantuono.live.contentlist.network.RetrofitContentListClient
-import com.pietrantuono.live.contentlist.viewmodel.ContentListViewModel
+import com.pietrantuono.live.contentlist.viewmodel.ContentViewModel
 import com.pietrantuono.live.contentlist.viewmodel.ContentViewModelFactory
 import dagger.Binds
 import dagger.Module
@@ -18,8 +15,6 @@ import kotlin.coroutines.CoroutineContext
 @Module
 abstract class ContentListModule {
 
-    @Binds
-    abstract fun bindsContentListClient(client: RetrofitContentListClient): ContentListClient
 
     @Binds
     abstract fun bindsContentListModel(client: RetrofitContentListModel): ContentListModel
@@ -28,7 +23,7 @@ abstract class ContentListModule {
 
         @Provides
         fun provideViewModel(viewModelStoreOwner: FragmentActivity, factory: ContentViewModelFactory) =
-            ViewModelProvider(viewModelStoreOwner, factory).get<ContentListViewModel>(ContentListViewModel::class.java)
+            ViewModelProvider(viewModelStoreOwner, factory).get<ContentViewModel>(ContentViewModel::class.java)
 
         @Provides
         fun provideCoroutineContext(): CoroutineContext = Dispatchers.IO

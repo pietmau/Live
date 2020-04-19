@@ -12,11 +12,8 @@ interface ContentListSubComponent {
 
     fun inject(contentListActivity: ContentListActivity)
 
-    fun inject(contentListActivity: DetailFragment)
-
     @Subcomponent.Factory
     interface Factory {
         fun create(@BindsInstance appCompatActivity: FragmentActivity): ContentListSubComponent
     }
-
 }
