@@ -11,6 +11,8 @@ import com.pietrantuono.live.contentlist.viewmodel.ContentViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.Dispatchers
+import kotlin.coroutines.CoroutineContext
 
 @Module
 abstract class ContentListModule {
@@ -26,5 +28,8 @@ abstract class ContentListModule {
         @Provides
         fun provideViewModel(viewModelStoreOwner: AppCompatActivity, factory: ContentViewModelFactory) =
             ViewModelProvider(viewModelStoreOwner, factory).get<ContentListViewModel>(ContentListViewModel::class.java)
+
+        @Provides
+        fun provideCoroutineContext(): CoroutineContext = Dispatchers.IO
     }
 }

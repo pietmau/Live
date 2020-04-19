@@ -9,8 +9,7 @@
     <com.pietrantuono.live.contentlist.view.recycler.ContentListRecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:layout_height="match_parent" />
 
     <ProgressBar
         android:id="@+id/progress"
