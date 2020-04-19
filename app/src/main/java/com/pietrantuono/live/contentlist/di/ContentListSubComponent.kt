@@ -1,7 +1,7 @@
 package com.pietrantuono.live.contentlist.di
 
 import androidx.appcompat.app.AppCompatActivity
-import com.pietrantuono.live.contentlist.ContentListActivity
+import com.pietrantuono.live.contentlist.view.ContentListActivity
 import dagger.BindsInstance
 import dagger.Subcomponent
 

@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 data class ContentList( //TODO use interceptor instead.
     @SerializedName("items")
     @Expose
-    var items: List<Item>? = null
+    var contentListItems: List<ContentListItem>? = null
 )

@@ -3,7 +3,7 @@ package com.pietrantuono.live.contentlist.pokos
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Item(
+data class ContentListItem(
     @SerializedName("id")
     @Expose
     var id: Int? = null,
