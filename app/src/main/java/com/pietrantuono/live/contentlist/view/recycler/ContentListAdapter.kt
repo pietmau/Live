@@ -8,10 +8,12 @@ import com.pietrantuono.live.contentlist.pokos.ContentListItem
 
 class ContentListAdapter : ListAdapter<ContentListItem, ContentListViewHolder>(ContentListDiffCallback) {
 
+    lateinit var callback: (id: Int) -> Unit
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ContentListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false))
+        ContentListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_item, parent, false))
 
     override fun onBindViewHolder(holder: ContentListViewHolder, position: Int) =
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), callback)
 }
 

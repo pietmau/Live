@@ -1,6 +1,7 @@
 package com.pietrantuono.live.contentlist.di
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.pietrantuono.live.contentlist.model.ContentListModel
 import com.pietrantuono.live.contentlist.model.RetrofitContentListModel
@@ -26,7 +27,7 @@ abstract class ContentListModule {
     companion object {
 
         @Provides
-        fun provideViewModel(viewModelStoreOwner: AppCompatActivity, factory: ContentViewModelFactory) =
+        fun provideViewModel(viewModelStoreOwner: FragmentActivity, factory: ContentViewModelFactory) =
             ViewModelProvider(viewModelStoreOwner, factory).get<ContentListViewModel>(ContentListViewModel::class.java)
 
         @Provides

@@ -1,4 +1,4 @@
-package com.pietrantuono.live.contentlist.view
+package com.pietrantuono.live.contentlist.viewmodel
 
 import com.pietrantuono.live.contentlist.pokos.ContentListItem
 

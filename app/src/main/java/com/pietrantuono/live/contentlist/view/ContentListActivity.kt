@@ -10,12 +10,16 @@ import com.google.android.material.snackbar.Snackbar
 import com.pietrantuono.live.R
 import com.pietrantuono.live.application.LiveApp
 import com.pietrantuono.live.contentlist.pokos.ContentListItem
+import com.pietrantuono.live.contentlist.viewmodel.ContentListIntent.OpenDetail
 import com.pietrantuono.live.contentlist.viewmodel.ContentListViewModel
+import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState
 import com.pietrantuono.live.databinding.ActivityMainBinding
 import javax.inject.Inject
-import  com.pietrantuono.live.contentlist.view.ContentListViewState.Loading
-import  com.pietrantuono.live.contentlist.view.ContentListViewState.Error
-import  com.pietrantuono.live.contentlist.view.ContentListViewState.Content
+import  com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Loading
+import  com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Error
+import  com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Content
+import com.pietrantuono.live.contentlist.viewmodel.TransientEvent
+import com.pietrantuono.live.detail.DetailFragment
 
 class ContentListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -30,7 +34,16 @@ class ContentListActivity : AppCompatActivity() {
         contentListViewModel.viewStates.observe(this, Observer {
             render(it)
         })
+        binding.list.callback = {
+            contentListViewModel.acceptIntent(OpenDetail(it))
+        }
+        contentListViewModel.transientEvents.observe(this, Observer { onTransientEventReceived(it) })
     }
+
+    private fun onTransientEventReceived(transientEvent: TransientEvent) =
+        when (transientEvent) {
+            is TransientEvent.OpenDatail -> DetailFragment.newInstance(transientEvent.detailItem).show(supportFragmentManager, DetailFragment.TAG)
+        }
 
     private fun render(viewState: ContentListViewState) =
         when (viewState) {

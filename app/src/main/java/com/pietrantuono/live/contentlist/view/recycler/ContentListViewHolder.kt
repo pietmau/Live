@@ -12,11 +12,14 @@ class ContentListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val id by lazy { itemView.findViewById<TextView>(R.id.itemId) }
     private val date by lazy { itemView.findViewById<TextView>(R.id.date) }
 
-    fun bind(item: ContentListItem) {
+    fun bind(item: ContentListItem, callback: (id: Int) -> Unit) {
         title.text = item.title
         subTitle.text = item.subtitle
         id.text = "${item.id}"
         date.text = item.date
+        itemView.setOnClickListener {
+            callback(item.id)
+        }
     }
 
 }

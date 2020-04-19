@@ -1,6 +1,7 @@
 package com.pietrantuono.live.contentlist.network
 
 import com.pietrantuono.live.contentlist.pokos.ContentList
+import com.pietrantuono.live.contentlist.pokos.Detail
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
@@ -15,4 +16,6 @@ class RetrofitContentListClient @Inject constructor() : ContentListClient {
         .create<ContentLitApi>(ContentLitApi::class.java)
 
     override suspend fun getResponse(): ContentList = api.getContentList()
+
+    override suspend fun getDetail(id: Int): Detail = api.getDetail(id)
 }

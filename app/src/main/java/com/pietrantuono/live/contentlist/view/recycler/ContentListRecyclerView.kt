@@ -11,6 +11,11 @@ class ContentListRecyclerView @JvmOverloads constructor(context: Context, attrs:
     private val contentListAdapter: ContentListAdapter
         get() = adapter as ContentListAdapter
 
+    var callback: (id: Int) -> Unit = {}
+        set(value) {
+            contentListAdapter.callback = value
+        }
+
     init {
         layoutManager = LinearLayoutManager(context)
         adapter = ContentListAdapter()
