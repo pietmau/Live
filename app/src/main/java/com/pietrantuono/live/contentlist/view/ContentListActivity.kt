@@ -7,9 +7,13 @@ import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
 import com.google.android.material.snackbar.Snackbar
+import com.pietrantuono.live.IntentConsumer
 import com.pietrantuono.live.R
+import com.pietrantuono.live.TransientEventProducer
+import com.pietrantuono.live.ViewStatesProducer
 import com.pietrantuono.live.application.LiveApp
 import com.pietrantuono.live.contentlist.pokos.ContentListItem
+import com.pietrantuono.live.contentlist.viewmodel.ContentListIntent
 import com.pietrantuono.live.contentlist.viewmodel.ContentListIntent.OpenDetail
 import com.pietrantuono.live.contentlist.viewmodel.ContentViewModel
 import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState
@@ -24,20 +28,24 @@ import com.pietrantuono.live.detail.DetailFragment
 class ContentListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     @Inject
-    lateinit var contentViewModel: ContentViewModel
+    lateinit var intentConsumer: IntentConsumer<ContentListIntent>
+    @Inject
+    lateinit var viewStates: ViewStatesProducer<ContentListViewState>
+    @Inject
+    lateinit var transientEvents: TransientEventProducer<ContentListTransientEvent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         performDependencyInjection()
-        contentViewModel.viewStates.observe(this, Observer {
+        viewStates.viewStates.observe(this, Observer {
             render(it)
         })
         binding.list.callback = {
-            contentViewModel.acceptIntent(OpenDetail(it))
+            intentConsumer.acceptIntent(OpenDetail(it))
         }
-        contentViewModel.transientEvents.observe(this, Observer { onTransientEventReceived(it) })
+        transientEvents.transientEvents.observe(this, Observer { onTransientEventReceived(it) })
     }
 
     private fun onTransientEventReceived(transientEvent: ContentListTransientEvent) =
