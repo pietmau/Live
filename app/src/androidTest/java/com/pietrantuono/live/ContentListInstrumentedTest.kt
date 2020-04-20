@@ -27,7 +27,7 @@ class ContentListInstrumentedTest {
     var activityRule: ActivityTestRule<ContentListActivity> = object : ActivityTestRule<ContentListActivity>(ContentListActivity::class.java) {
         override fun beforeActivityLaunched() {
             val application = InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as LiveApp
-            application.appComponent = DaggerTestAppComponent.factory().create(intentConsumer = mockk(), viewStatesProducer = viewStatesProducer, transientEventProducer = mockk())
+            application.appComponent = DaggerTestAppComponent.factory().create(mockk(),mockk(),mockk())
         }
     }
 

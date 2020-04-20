@@ -7,6 +7,6 @@ class LiveApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent.create()
+        appComponent = DaggerProdAppComponent.create()
     }
 }

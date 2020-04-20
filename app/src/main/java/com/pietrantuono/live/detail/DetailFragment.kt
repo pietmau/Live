@@ -5,19 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.pietrantuono.live.application.AppComponent
 import com.pietrantuono.live.application.LiveApp
-import com.pietrantuono.live.contentlist.network.ContentListClient
 import com.pietrantuono.live.contentlist.pokos.ContentListItem
-import com.pietrantuono.live.contentlist.pokos.Detail
 import com.pietrantuono.live.databinding.FragmentDetailBinding
 import kotlinx.android.synthetic.main.fragment_detail.body
-import kotlinx.android.synthetic.main.view_item.date
-import kotlinx.android.synthetic.main.view_item.subtitle
-import kotlinx.android.synthetic.main.view_item.title
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DetailFragment : BottomSheetDialogFragment() {
@@ -53,7 +45,7 @@ class DetailFragment : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity?.application as LiveApp).appComponent.detailSubComponentFactory.create(requireActivity(), itemId).inject(this)
+        (activity?.application as LiveApp).appComponent.detailSubComponentFactory.create(requireActivity(),itemId).inject(this)
     }
 
     override fun onDestroyView() {
