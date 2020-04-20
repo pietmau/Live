@@ -1,9 +1,9 @@
 package com.pietrantuono.live.contentlist.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_LONG
 import com.google.android.material.snackbar.Snackbar
@@ -15,15 +15,14 @@ import com.pietrantuono.live.application.LiveApp
 import com.pietrantuono.live.contentlist.pokos.ContentListItem
 import com.pietrantuono.live.contentlist.viewmodel.ContentListIntent
 import com.pietrantuono.live.contentlist.viewmodel.ContentListIntent.OpenDetail
-import com.pietrantuono.live.contentlist.viewmodel.ContentViewModel
-import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState
-import com.pietrantuono.live.databinding.ActivityMainBinding
-import javax.inject.Inject
-import  com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Loading
-import  com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Error
-import  com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Content
 import com.pietrantuono.live.contentlist.viewmodel.ContentListTransientEvent
+import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState
+import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Content
+import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Error
+import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Loading
+import com.pietrantuono.live.databinding.ActivityMainBinding
 import com.pietrantuono.live.detail.DetailFragment
+import javax.inject.Inject
 
 class ContentListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

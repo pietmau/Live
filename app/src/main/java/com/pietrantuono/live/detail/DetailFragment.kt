@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.pietrantuono.live.application.AppComponent
 import com.pietrantuono.live.application.LiveApp
 import com.pietrantuono.live.contentlist.network.ContentListClient
 import com.pietrantuono.live.contentlist.pokos.ContentListItem

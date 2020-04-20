@@ -16,3 +16,4 @@ interface AppComponent {
 
     val detailSubComponentFactory: DetailSubComponent.Factory
 }
+
