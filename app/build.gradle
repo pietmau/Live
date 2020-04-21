@@ -72,5 +72,6 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation "io.mockk:mockk-android:1.9"
+    androidTestImplementation "org.assertj:assertj-core:3.15.0"
     kaptAndroidTest 'com.google.dagger:dagger-compiler:2.27'
 }
