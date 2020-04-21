@@ -1,5 +1,6 @@
 package com.pietrantuono.live.detail.di
 
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +15,7 @@ object DetailModule {
 
     @JvmStatic
     @Provides
-    fun provideViewModel(viewModelStoreOwner: FragmentActivity, factory: DetailViewModelFactory) =
+    fun provideViewModel(viewModelStoreOwner: Fragment, factory: DetailViewModelFactory) =
         ViewModelProvider(viewModelStoreOwner, factory).get<DetailViewModel>(DetailViewModel::class.java)
 
     @JvmStatic

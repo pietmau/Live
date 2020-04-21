@@ -1,5 +1,6 @@
 package com.pietrantuono.live.detail.di
 
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.pietrantuono.live.detail.DetailFragment
 import dagger.BindsInstance
@@ -13,6 +14,6 @@ interface DetailSubComponent {
 
     @Subcomponent.Factory
     interface Factory {
-        fun create(@BindsInstance appCompatActivity: FragmentActivity, @BindsInstance @Named("id") id: Int): DetailSubComponent
+        fun create(@BindsInstance fragment: Fragment, @BindsInstance @Named("id") id: Int): DetailSubComponent
     }
 }

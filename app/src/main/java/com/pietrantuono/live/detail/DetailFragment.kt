@@ -31,7 +31,7 @@ class DetailFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         contentListItem?.let { item ->
-            binding?.run {
+            binding?.apply {
                 title.text = item.title
                 subtitle.text = item.subtitle
                 date.text = item.date
@@ -45,7 +45,7 @@ class DetailFragment : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (activity?.application as LiveApp).appComponent.detailSubComponentFactory.create(requireActivity(),itemId).inject(this)
+        (activity?.application as LiveApp).appComponent.detailSubComponentFactory.create(this, itemId).inject(this)
     }
 
     override fun onDestroyView() {
