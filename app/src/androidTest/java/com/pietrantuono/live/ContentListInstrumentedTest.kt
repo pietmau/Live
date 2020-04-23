@@ -9,10 +9,9 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.pietrantuono.live.contentlist.pokos.ContentListItem
 import com.pietrantuono.live.contentlist.viewmodel.ContentListIntent
-import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState
 import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Content
-import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Loading
 import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Error
+import com.pietrantuono.live.contentlist.viewmodel.ContentListViewState.Loading
 import io.mockk.slot
 import io.mockk.verify
 import org.assertj.core.api.Assertions.assertThat
